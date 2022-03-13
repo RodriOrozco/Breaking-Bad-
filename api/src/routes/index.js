@@ -4,7 +4,7 @@ const axios = require("axios");
 // Ejemplo: const authRouter = require('./auth.js');
 
 const router = Router();
-const { Occupation, Character } = require("../db");
+const { Character, Occupation } = require("../db");
 
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
@@ -38,18 +38,18 @@ const getDbInfo = async () => {
 };
 
 const getAllCharacters = async () => {
-  let apiInfo = await getApiInfo();
-  let dbInfo = await getDbInfo();
-  let apiTotal = apiInfo.concat(dbInfo);
+  const apiInfo = await getApiInfo();
+  const dbInfo = await getDbInfo();
+  const apiTotal = apiInfo.concat(dbInfo);
   return apiTotal;
 };
 
 router.get("/characters", async (req, res) => {
-  const name = req.params.name;
-  const charactersTotal = await getAllCharacters();
+  const name = req.query.name;
+  let charactersTotal = await getAllCharacters();
 
   if (name) {
-    const charactersName = charactersTotal.filter((el) =>
+    let charactersName = await charactersTotal.filter((el) =>
       el.name.toLowerCase().includes(name.toLowerCase())
     );
     charactersName.length
@@ -62,20 +62,24 @@ router.get("/characters", async (req, res) => {
 
 router.get("/occupations", async (req, res) => {
   const occupationsApi = await axios.get(
-    "https://breakingbadapi.com/api/characters"
+    "https://www.breakingbadapi.com/api/characters"
   );
   const occupations = occupationsApi.data.map((el) => el.occupation);
-  const occEach = occupations.map((el) => {
-    for (let i = 0; i < el.length; i++) return el[i];
-  });
+  // console.log(occupations);
+  const occEach = occupations.flat();
+  console.log(occEach);
+  // const occEach = occupations.map((el) => {
+  //   for (let i = 0; i < el.length; i++) return el[i];
+  //   console.log(occEach);
+  // });
   occEach.forEach((el) => {
     Occupation.findOrCreate({
       where: { name: el },
     });
-
-    const allOccupations = await Occupation.findAll();
-    res.send(allOccupations);
   });
+  const allOccupations = await Occupation.findAll();
+  console.log(allOccupations);
+  res.send(allOccupations);
 });
 
 router.post("/character", async (req, res) => {
@@ -100,7 +104,7 @@ router.post("/character", async (req, res) => {
 });
 
 router.get("/characters/:id", async (req, res) => {
-  const { id } = req.params;
+  const id = req.params.id;
 
   const characterTotal = await getAllCharacters();
 

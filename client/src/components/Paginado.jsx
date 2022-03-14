@@ -18,7 +18,6 @@ function Paginado({ charactersPerPage, allCharacters, paginado }) {
                 <a onClick={() => paginado(number)} href="#">
                   {number}
                 </a>
-                ;
               </li>
             );
           })}

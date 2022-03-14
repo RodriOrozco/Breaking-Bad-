@@ -10,6 +10,7 @@ import {
   orderByName,
 } from "../redux/actions";
 
+import "./home.css";
 import Card from "./Card";
 import SearchBar from "./SearchBar";
 import Paginado from "./Paginado.jsx";
@@ -59,52 +60,70 @@ function Home() {
 
   return (
     <div>
-      <Link to="/character">Crear Personaje</Link>
-      <h1>BREAKING BAD</h1>
-      <button onClick={(e) => handleClick(e)}>
-        Volver a cargar personajes
-      </button>
+      <div className="navBar">
+        <Link to="/">
+          <img src="https://i.imgur.com/5mOTPG4.png" alt="logito" />
+        </Link>
+        <button onClick={(e) => handleClick(e)} className="btnI">
+          Recargar personajes
+        </button>
+        <Link to="/character">
+          <button className="btnI">Crear Personaje</button>
+        </Link>
+        <div className="search">
+          <SearchBar />
+        </div>
+      </div>
+
       <div>
-        <select onChange={(e) => handleSort(e)}>
-          <option value="asc">Ascendente</option>
-          <option value="desc">Descendente</option>
-        </select>
+        <div className="custom-select">
+          <select onChange={(e) => handleSort(e)} className="select-css">
+            <option value="asc">Ascendente</option>
+            <option value="desc">Descendente</option>
+          </select>
 
-        <select onChange={(e) => handleFilterStatus(e)}>
-          <option value="All">Todos</option>
-          <option value="Alive">Vivo</option>
-          <option value="Deceased">Muerto</option>
-          <option value="Unknown">Desconocido</option>
-          <option value="Presumed dead">Probablemente muerto</option>
-        </select>
+          <select
+            onChange={(e) => handleFilterStatus(e)}
+            className="select-css"
+          >
+            <option value="All">Todos</option>
+            <option value="Alive">Vivo</option>
+            <option value="Deceased">Muerto</option>
+            <option value="Unknown">Desconocido</option>
+            <option value="Presumed dead">Probablemente muerto</option>
+          </select>
 
-        <select onChange={(e) => handleFilterCreated(e)}>
-          <option value="All">Todos</option>
-          <option value="Created">Creados</option>
-          <option value="Api">Existente</option>
-        </select>
+          <select
+            onChange={(e) => handleFilterCreated(e)}
+            className="select-css"
+          >
+            <option value="All">Todos</option>
+            <option value="Created">Creados</option>
+            <option value="Api">Existente</option>
+          </select>
+        </div>
         <Paginado
           charactersPerPage={charactersPerPage}
           allCharacters={allCharacters.length}
           paginado={paginado}
         />
-        <SearchBar />
 
-        {currentCharacters?.map((character) => {
-          return (
-            <>
-              <Link to={"/home/" + character.id}>
+        <div className="cards">
+          {currentCharacters?.map((character) => {
+            return (
+              <>
                 <Card
                   key={character.id}
+                  id={character.id}
                   name={character.name}
                   nickname={character.nickname}
                   image={character.img ? character.img : character.image}
                   //character.image? character.image: <img src=''... />
                 />
-              </Link>
-            </>
-          );
-        })}
+              </>
+            );
+          })}
+        </div>
       </div>
     </div>
   );

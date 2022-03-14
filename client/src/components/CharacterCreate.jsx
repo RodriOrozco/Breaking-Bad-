@@ -168,12 +168,12 @@ export default function CharacterCreate() {
         </div>
         <select onChange={(e) => handleSelect(e)}>
           {occupations.map((occ) => {
-            <option value={occ.name}>{occ.name}</option>;
+            return <option value={occ.name}>{occ.name}</option>;
           })}
         </select>
-        <ul>
+        {/* <ul>
           <li>{input.occupation.map((el) => el + " ,")}</li>
-        </ul>
+        </ul> */}
         <button type="submit">Crear</button>
       </form>
       {input.occupation.map((el) => (

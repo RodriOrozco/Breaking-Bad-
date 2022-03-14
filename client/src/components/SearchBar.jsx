@@ -25,13 +25,15 @@ export default function SearchBar() {
     <div>
       <input
         className="buscador"
+        id="in"
         type="text"
-        placeholder="Buscar..."
+        placeholder="Escribir..."
         // value={name}
         onChange={(e) => handleInputChange(e)}
       />
       <button
         className="buscador"
+        id="bt"
         type="submit"
         onClick={(e) => handleSubmit(e)}
       >

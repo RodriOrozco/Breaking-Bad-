@@ -4,11 +4,18 @@ import "./landing.css";
 
 function Landing() {
   return (
-    <div>
-      <h1>Bienvenidos a Breaking-Bad App</h1>
-      <Link to="/home">
-        <button>Ingresar</button>
-      </Link>
+    <div className="container">
+      <img
+        src="https://i.imgur.com/5mOTPG4.png"
+        alt="logo"
+        width="500px"
+        height="400px"
+      />
+      <div>
+        <Link to="/home">
+          <button className="button">Ingresar</button>
+        </Link>
+      </div>
     </div>
   );
 }

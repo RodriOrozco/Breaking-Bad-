@@ -23,5 +23,5 @@ ul li a.active {
 }
 
 ul li a:hover:not(.active) {
-  background-color: rgb(47, 144, 84);
+  background-color: rgb(17, 56, 32);
 }

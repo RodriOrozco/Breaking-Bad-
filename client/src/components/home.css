@@ -9,13 +9,15 @@
   height: 80px;
   width: 130px;
 }
+.navBar #botonIzquierdo {
+  margin-left: 13px;
+}
 .navBar .btnI {
   float: left;
   border: none;
   font-size: 17px;
   font-weight: bold;
   cursor: pointer;
-  margin-left: 13px;
   padding: 29px 16px;
   color: whitesmoke;
   justify-content: center;

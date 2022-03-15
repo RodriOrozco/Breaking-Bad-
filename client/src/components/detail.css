@@ -1,0 +1,120 @@
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 929px;
+  height: 303px;
+}
+/* ------------------------------------------------------ */
+.contenedor {
+  border-radius: 20px;
+  margin-top: 20px;
+  margin-left: 33%;
+  margin-right: 33%;
+  background-image: url("https://i.imgur.com/Las4MFT.gif");
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: black;
+  text-transform: uppercase;
+  text-align: center;
+  font: 0.9rem futura-book;
+  box-shadow: 1px -1px 13px 4px rgba(0, 0, 0, 0.93);
+  margin-bottom: 3%;
+  padding-bottom: 15px;
+}
+.contenedor h1 {
+  font: 1.4rem futura-book;
+  font-size: 30px;
+  color: #ffffff;
+  font-weight: bold;
+  background-color: transparent;
+  border-radius: 20px 20px 0 0;
+  padding-top: 8px;
+}
+
+.imagenDetalle {
+  display: flex;
+  justify-content: center;
+}
+
+.subtitle {
+  margin-top: 15px;
+  color: #fffb20;
+  font: 1.1rem futura-book;
+  font-weight: bold;
+}
+
+.text {
+  margin-top: 10px;
+  color: rgb(255, 255, 255);
+  font: 0.9rem futura-book;
+  margin: 0.8%;
+}
+.botonDetalle {
+  margin-left: 10%;
+  margin-right: 10%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-bottom: 2%;
+  margin-top: 20px;
+}
+
+/* ------------------------------------------------------ */
+
+.button {
+  --color: rgb(13, 59, 31);
+  padding: 0.8em 1.7em;
+  background-color: transparent;
+  border-radius: 0.3em;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: 0.5s;
+  font-weight: 600;
+  font-size: 17px;
+  border: 1px solid;
+  font-family: inherit;
+  text-transform: uppercase;
+  color: whitesmoke;
+  z-index: 1;
+}
+
+.button::before,
+.button::after {
+  content: "";
+  display: block;
+  width: 50px;
+  height: 50px;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  border-radius: 50%;
+  z-index: -1;
+  background-color: #fffb20;
+  transition: 1s ease;
+}
+
+.button::before {
+  top: -1em;
+  left: -1em;
+}
+
+.button::after {
+  left: calc(100% + 1em);
+  top: calc(100% + 1em);
+}
+
+.button:hover::before,
+.button:hover::after {
+  height: 410px;
+  width: 410px;
+}
+
+.button:hover {
+  color: rgb(8, 36, 19);
+  border-color: rgb(8, 36, 19);
+}
+
+.button:active {
+  filter: brightness(0.8);
+}

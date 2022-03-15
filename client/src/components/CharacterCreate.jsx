@@ -2,6 +2,7 @@ import { Link, useHistory } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
+import "./characterCreate.css";
 import { postCharacter, getOccupations } from "../redux/actions";
 
 function validate(input) {
@@ -84,15 +85,13 @@ export default function CharacterCreate() {
   }, []);
 
   return (
-    <div>
-      <Link to="/home">
-        <button>volver</button>
-      </Link>
-      <h1>Crea tu personaje!</h1>
-      <form onSubmit={(e) => handleSubmit(e)}>
-        <div>
+    <div className="addCharacter">
+      <form onSubmit={(e) => handleSubmit(e)} className="formulario">
+        <h1>Crea tu personaje!</h1>
+        <div className="form_inputs">
           <label>Nombre:</label>
           <input
+            className="inputs"
             type="text"
             value={input.name}
             name="name"
@@ -100,36 +99,39 @@ export default function CharacterCreate() {
           />
           {errors.name && <p className="error">{errors.name}</p>}
         </div>
-        <div>
+        <div className="form_inputs">
           <label>Nickname:</label>
           <input
+            className="inputs"
             type="text"
             value={input.nickname}
             name="nickname"
             onChange={(e) => handleChange(e)}
           />
         </div>
-        <div>
+        <div className="form_inputs">
           <label>Cumpleaños:</label>
           <input
+            className="inputs"
             type="text"
             value={input.birthday}
             name="birthday"
             onChange={(e) => handleChange(e)}
           />
         </div>
-        <div>
+        <div className="form_inputs">
           <label>Imagen:</label>
           <input
+            className="inputs"
             type="text"
             value={input.image}
             name="image"
             onChange={(e) => handleChange(e)}
           />
         </div>
-        <div>
-          <label>Estado:</label>
-          <label>
+        <div className="form_inputs" id="estado_inputs">
+          {/* <label id="label_estado">Estado:</label> */}
+          <label className="check1">
             <input
               type="checkbox"
               value="Alive"
@@ -138,7 +140,7 @@ export default function CharacterCreate() {
             />
             Vivo
           </label>
-          <label>
+          <label className="check2">
             <input
               type="checkbox"
               value="Deceased"
@@ -147,7 +149,7 @@ export default function CharacterCreate() {
             />
             Muerto
           </label>
-          <label>
+          <label className="check3">
             <input
               type="checkbox"
               value="Unknown"
@@ -156,7 +158,7 @@ export default function CharacterCreate() {
             />
             Desconocido
           </label>
-          <label>
+          <label className="check4">
             <input
               type="checkbox"
               value="Presumed dead"
@@ -166,22 +168,31 @@ export default function CharacterCreate() {
             Probablemente muerto
           </label>
         </div>
-        <select onChange={(e) => handleSelect(e)}>
-          {occupations.map((occ) => {
-            return <option value={occ.name}>{occ.name}</option>;
-          })}
-        </select>
+        <div className="custom-select">
+          <select onChange={(e) => handleSelect(e)} className="select-css">
+            {occupations.map((occ) => {
+              return <option value={occ.name}>{occ.name}</option>;
+            })}
+          </select>
+        </div>
         {/* <ul>
           <li>{input.occupation.map((el) => el + " ,")}</li>
         </ul> */}
-        <button type="submit">Crear</button>
+        <button type="submit" className="add_button">
+          Crear
+        </button>
+        <Link to="/home">
+          <button className="add_button">volver</button>
+        </Link>
       </form>
-      {input.occupation.map((el) => (
+      {/* {input.occupation.map((el) => (
         <div>
           <p>{el}</p>
           <button onClick={(e) => handleDelete(el)}>x</button>
         </div>
-      ))}
+      ))} */}
     </div>
   );
 }
+
+//-----------------------------------------------

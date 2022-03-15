@@ -64,7 +64,11 @@ function Home() {
         <Link to="/">
           <img src="https://i.imgur.com/5mOTPG4.png" alt="logito" />
         </Link>
-        <button onClick={(e) => handleClick(e)} className="btnI">
+        <button
+          onClick={(e) => handleClick(e)}
+          className="btnI"
+          id="botonIzquierdo"
+        >
           Recargar personajes
         </button>
         <Link to="/character">
